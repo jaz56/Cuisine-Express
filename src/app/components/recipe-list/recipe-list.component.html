@@ -1,0 +1,37 @@
+<section class="recipes-section">
+    <div *ngFor="let recipe of matchingRecipes" class="recipe-card" (click)="onRecipeClick(recipe)">
+        <div class="recipe-image-container">
+            <img [src]="recipe.image" [alt]="recipe.name" class="recipe-image">
+        </div>
+        <div class="recipe-content">
+            <h3 class="recipe-title">{{ recipe.name }}</h3>
+            <div class="recipe-tags">
+                <span class="recipe-tag">{{ recipe.time }}</span>
+                <span class="recipe-tag">{{ recipe.difficulty }}</span>
+                <span *ngFor="let tag of recipe.tags" class="recipe-tag">{{ tag }}</span>
+            </div>
+            <button class="view-btn" (click)="onRecipeClick(recipe)">Voir la recette</button>
+        </div>
+    </div>
+
+    <div *ngFor="let recipe of almostMatchingRecipes" class="recipe-card missing-ingredient" (click)="onRecipeClick(recipe)">
+        <div class="recipe-image-container">
+            <img [src]="recipe.image" [alt]="recipe.name" class="recipe-image">
+        </div>
+        <div class="recipe-content">
+            <h3 class="recipe-title">{{ recipe.name }}</h3>
+            <div class="recipe-tags">
+                <span class="recipe-tag">{{ recipe.time }}</span>
+                <span class="recipe-tag">{{ recipe.difficulty }}</span>
+                <span *ngFor="let tag of recipe.tags" class="recipe-tag">{{ tag }}</span>
+            </div>
+            <p><em>Il vous manque: {{ recipe.missingIngredient }}</em></p>
+            <button class="view-btn" (click)="onRecipeClick(recipe)">Voir la recette</button>
+        </div>
+    </div>
+
+    <div *ngIf="showNoResults" class="no-results">
+        <h3>Aucune recette trouvée</h3>
+        <p>Ajoutez plus d'ingrédients pour voir des recettes.</p>
+    </div>
+</section>

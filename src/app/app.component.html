@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="container">
+    <app-ingredient-search></app-ingredient-search>
+    <app-recipe-list (recipeSelected)="onRecipeSelected($event)"></app-recipe-list>
+</div>
+
+<app-recipe-modal
+    [recipe]="selectedRecipe"
+    [isOpen]="isModalOpen"
+    (closeModal)="onCloseModal()">
+</app-recipe-modal>
+
+<button class="toggle-theme" (click)="toggleTheme()">
+    {{ isDarkMode ? '☀️' : '🌙' }}
+</button>

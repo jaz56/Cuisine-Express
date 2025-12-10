@@ -1,0 +1,31 @@
+<div *ngIf="isOpen && recipe" class="modal" (click)="onBackdropClick($event)">
+    <div class="modal-content">
+        <span class="close" (click)="onClose()">&times;</span>
+        <div class="modal-recipe-content">
+            <img [src]="recipe.image" [alt]="recipe.name" class="modal-recipe-img">
+            <h2>{{ recipe.name }}</h2>
+            <div class="recipe-tags">
+                <span class="recipe-tag">{{ recipe.time }}</span>
+                <span class="recipe-tag">{{ recipe.difficulty }}</span>
+                <span *ngFor="let tag of recipe.tags" class="recipe-tag">{{ tag }}</span>
+            </div>
+            <div class="modal-recipe-details">
+                <div class="modal-ingredients">
+                    <h3>Ingrédients</h3>
+                    <ul class="ingredients-list">
+                        <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+                    </ul>
+                </div>
+                <div class="modal-instructions">
+                    <h3>Instructions</h3>
+                    <div class="instructions-list">
+                        <div *ngFor="let step of recipe.instructions; let i = index" class="instruction-step">
+                            <span class="instruction-step-number">{{ i + 1 }}</span>
+                            <div class="instruction-text">{{ step }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

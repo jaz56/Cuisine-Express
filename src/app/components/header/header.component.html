@@ -1,0 +1,36 @@
+<header>
+    <div class="logo-title">
+        <img src="logo1.png" alt="Logo Cuisine Express">
+        <h1>Cuisine Express</h1>
+    </div>
+
+    <p>Trouvez des recettes avec les ingrédients que vous avez déjà chez vous</p>
+
+    <div class="recipe-search-banner">
+        <h2>Recherchez une recette</h2>
+        <div class="recipe-search-container">
+            <input
+                type="text"
+                [(ngModel)]="searchQuery"
+                (input)="onSearchInput()"
+                (blur)="hideSuggestions()"
+                (keypress.enter)="onSearch()"
+                class="recipe-search-input"
+                placeholder="ex: Poulet rôti, Salade de tomates...">
+
+            <div
+                *ngIf="showSuggestions"
+                id="recipe-name-suggestions"
+                class="autocomplete-suggestions">
+                <div
+                    *ngFor="let suggestion of suggestions"
+                    class="suggestion-item"
+                    (mousedown)="selectSuggestion(suggestion)">
+                    {{ suggestion }}
+                </div>
+            </div>
+
+            <button (click)="onSearch()" class="search-recipe-btn">Rechercher</button>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,38 @@
+<section class="search-section">
+    <h2>Quels ingrédients avez-vous?</h2>
+    <div class="search-container">
+        <div class="search-input-container">
+            <div class="autocomplete-container">
+                <input
+                    type="text"
+                    [(ngModel)]="ingredientInput"
+                    (input)="onIngredientInput()"
+                    (blur)="hideSuggestions()"
+                    (keypress.enter)="addIngredient()"
+                    class="search-input"
+                    placeholder="ex: œufs, lait, tomates...">
+
+                <div
+                    *ngIf="showSuggestions"
+                    class="autocomplete-suggestions">
+                    <div
+                        *ngFor="let suggestion of suggestions"
+                        class="autocomplete-suggestion"
+                        (mousedown)="selectSuggestion(suggestion)">
+                        {{ suggestion }}
+                    </div>
+                </div>
+            </div>
+            <button (click)="addIngredient()" class="add-btn">Ajouter</button>
+        </div>
+
+        <button (click)="showRandomRecipe()" class="random-btn">Je n'ai pas d'idée</button>
+
+        <div class="tags-container">
+            <div *ngFor="let ingredient of userIngredients" class="tag">
+                {{ ingredient }}
+                <span class="tag-delete" (click)="removeIngredient(ingredient)">×</span>
+            </div>
+        </div>
+    </div>
+</section>
